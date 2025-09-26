@@ -196,3 +196,8 @@ vector<Movie> getRecommendations(string preferredGenre, string preferredMood, in
         cout << string(60, '=') << "\n";
     }
 };
+int main() {
+    NetflixMovieFinder finder;
+    finder.runMovieFinder();
+    return 0;
+}
