@@ -124,3 +124,23 @@ string getGenrePreference() {
             default: return 0; 
         }
     }
+vector<Movie> getRecommendations(string preferredGenre, string preferredMood, int maxDuration) {
+        vector<pair<Movie, int>> scoredMovies;
+        for (const auto& movie : movieDatabase) {
+            int score = 0;
+            if (preferredGenre == "Random" || movie.genre == preferredGenre) score += 2;
+            if (preferredMood == "Any" || movie.mood == preferredMood) score += 2;
+            if (maxDuration == 0 || movie.duration <= maxDuration) score += 1;
+            if (score > 0) scoredMovies.push_back({movie, score});
+        }
+        sort(scoredMovies.begin(), scoredMovies.end(),
+            [](const pair<Movie, int>& a, const pair<Movie, int>& b) {
+                if (a.second == b.second) return a.first.rating > b.first.rating;
+                return a.second > b.second;
+            });
+        lastRecommendations.clear();
+        for (size_t i = 0; i < scoredMovies.size() && i < 5; i++) {
+            lastRecommendations.push_back(scoredMovies[i].first);
+        }
+        return lastRecommendations;
+    }
