@@ -168,4 +168,31 @@ vector<Movie> getRecommendations(string preferredGenre, string preferredMood, in
                  << movie.description << "\n";
         }
         cout << "\nNote: Inspired by Netflix's Cinematch recommendation algorithm.\n\n";
-    
+     void runMovieFinder() {
+        displayWelcome();
+        char continueSearch = 'y';
+        while (continueSearch == 'y' || continueSearch == 'Y') {
+            string preferredGenre = getGenrePreference();
+            string preferredMood = getMoodPreference();
+            int maxDuration = getDurationPreference();
+            cout << "\nSearching for movies";
+            for (int i = 0; i < 3; i++) {
+                cout << "."; cout.flush();
+                this_thread::sleep_for(chrono::milliseconds(500));
+            }
+            cout << " done!\n";
+            vector<Movie> recommendations = getRecommendations(preferredGenre, preferredMood, maxDuration);
+            displayRecommendations(recommendations);
+            cout << "Would you like another search? (y/n): ";
+            cin >> continueSearch;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        if (!lastRecommendations.empty()) {
+            cout << "\nTop Recommendation Overall: " << lastRecommendations.front().title
+                 << " (" << lastRecommendations.front().genre << ", Rating: "
+                 << lastRecommendations.front().rating << ")\n";
+        }
+        cout << "\nThanks for using our Netflix-inspired Movie Finder!\n";
+        cout << string(60, '=') << "\n";
+    }
+};
