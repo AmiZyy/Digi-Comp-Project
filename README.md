@@ -1,9 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <cstdlib>
+#include <algorithm>
+#include <iomanip>
 #include <ctime>
+#include <cstdlib>
+#include <thread>
+#include <chrono>
 #include <limits>
+
 using namespace std;
 
 struct Movie {
