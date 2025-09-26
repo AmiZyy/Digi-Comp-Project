@@ -65,14 +65,21 @@ public:
             Movie("Fyre Festival", "Documentary", "Crime", 7.2, 2019, 97, "Behind the scenes of the failed Fyre festival.", "Thought-provoking")
         };
     }
-
-int getValidInput(int min, int max) {
-    int choice;
-    cin >> choice;
-    if (cin.fail() || choice < min || choice > max) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        return min;
+void displayWelcome() {
+        cout << "\n" << string(60, '=') << "\n";
+        cout << "      NETFLIX-STYLE MOVIE RECOMMENDATION SYSTEM\n";
+        cout << "      Inspired by Netflix's Innovation Journey\n";
+        cout << string(60, '=') << "\n\n";
     }
-    return choice;
-}
+    int getValidInput(int min, int max) {
+        int choice;
+        cin >> choice;
+        if (cin.fail() || choice < min || choice > max) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input! Defaulting to " << min << ".\n";
+            return min;
+        }
+        return choice;
+    }
+
