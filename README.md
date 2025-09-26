@@ -112,4 +112,15 @@ string getGenrePreference() {
             default: return "Any";
         }
     }
-    
+     int getDurationPreference() {
+        cout << "\nHOW MUCH TIME DO YOU HAVE?\n";
+        cout << "1. Quick (< 100 mins)\n2. Standard (100-130 mins)\n3. Long (130+ mins)\n4. Any\n";
+        cout << "Enter your choice (1-4): ";
+        int choice = getValidInput(1, 4);
+        switch(choice) {
+            case 1: return 100;
+            case 2: return 130;
+            case 3: return 200;
+            default: return 0; 
+        }
+    }
