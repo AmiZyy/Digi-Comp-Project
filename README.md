@@ -144,3 +144,28 @@ vector<Movie> getRecommendations(string preferredGenre, string preferredMood, in
         }
         return lastRecommendations;
     }
+ void displayRecommendations(const vector<Movie>& recommendations) {
+        cout << "\n" << string(70, '=') << "\n";
+        cout << "     YOUR PERSONALIZED NETFLIX-STYLE RECOMMENDATIONS\n";
+        cout << string(70, '=') << "\n\n";
+        if (recommendations.empty()) {
+            cout << "Sorry, no movies match your exact criteria.\n";
+            return;
+        }
+        cout << left << setw(25) << "Title"
+             << setw(12) << "Genre"
+             << setw(8) << "Rating"
+             << setw(8) << "Year"
+             << setw(10) << "Mood"
+             << "Description\n";
+        cout << string(80, '-') << "\n";
+        for (const auto& movie : recommendations) {
+            cout << left << setw(25) << movie.title
+                 << setw(12) << movie.genre
+                 << setw(8) << movie.rating
+                 << setw(8) << movie.year
+                 << setw(10) << movie.mood
+                 << movie.description << "\n";
+        }
+        cout << "\nNote: Inspired by Netflix's Cinematch recommendation algorithm.\n\n";
+    
