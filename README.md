@@ -82,4 +82,34 @@ void displayWelcome() {
         }
         return choice;
     }
-
+string getGenrePreference() {
+        cout << "SELECT YOUR PREFERRED GENRE:\n";
+        cout << "1. Action\n2. Drama\n3. Comedy\n4. Sci-Fi\n5. Horror\n6. Documentary\n7. Surprise Me!\n";
+        cout << "Enter your choice (1-7): ";
+        int choice = getValidInput(1, 7);
+        switch(choice) {
+            case 1: return "Action";
+            case 2: return "Drama";
+            case 3: return "Comedy";
+            case 4: return "Sci-Fi";
+            case 5: return "Horror";
+            case 6: return "Documentary";
+            case 7: return "Random";
+            default: return "Action";
+        }
+    }
+    string getMoodPreference() {
+        cout << "\nSELECT YOUR MOOD:\n";
+        cout << "1. Intense\n2. Emotional\n3. Light\n4. Thoughtful\n5. Any\n";
+        cout << "Enter your choice (1-5): ";
+        int choice = getValidInput(1, 5);
+        switch(choice) {
+            case 1: return "Intense";
+            case 2: return "Emotional";
+            case 3: return "Light";
+            case 4: return "Thought-provoking";
+            case 5: return "Any";
+            default: return "Any";
+        }
+    }
+    
