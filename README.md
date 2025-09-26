@@ -14,27 +14,57 @@ using namespace std;
 struct Movie {
     string title;
     string genre;
+    string subGenre
     double rating;
     int year;
     string description;
+    string mood;
     Movie(string t, string g, double r, int y, string d)
         : title(t), genre(g), rating(r), year(y), description(d) {}
 };
 
-vector<Movie> initializeDatabase() {
-    return {
-        {"Extraction", "Action", 6.7, 2020, "A mercenary is hired to rescue a kidnapped boy."},
-        {"6 Underground", "Action", 6.1, 2019, "Six individuals fake their deaths to take down criminals."},
-        {"Marriage Story", "Drama", 7.9, 2019, "A director and his wife go through a divorce."},
-        {"Roma", "Drama", 7.7, 2018, "Life of a maid in 1970s Mexico City."},
-        {"Murder Mystery", "Comedy", 6.0, 2019, "A couple gets framed for murder while on vacation."},
-        {"Eurovision Song Contest", "Comedy", 6.5, 2020, "Two singers chase their pop star dreams."},
-        {"Stranger Things", "Sci-Fi", 8.7, 2016, "A boy disappears, uncovering supernatural mysteries."},
-        {"Dark", "Sci-Fi", 8.7, 2017, "A German town uncovers supernatural secrets."},
-        {"Bird Box", "Horror", 6.6, 2018, "A mother and children struggle against unseen dangers."},
-        {"My Octopus Teacher", "Documentary", 8.1, 2020, "A filmmaker bonds with an octopus in South Africa."}
-    };
-}
+class NetflixMovieFinder {
+private:
+    vector<Movie> movieDatabase;
+    vector<Movie> lastRecommendations;
+
+public:
+    NetflixMovieFinder() {
+        initializeMovieDatabase();
+        srand(time(0)); 
+    }
+       void initializeMovieDatabase() {
+        movieDatabase = {
+            // Action
+            Movie("Extraction", "Action", "Thriller", 6.7, 2020, 116, "A mercenary is hired to rescue a kidnapped boy.", "Intense"),
+            Movie("6 Underground", "Action", "Thriller", 6.1, 2019, 128, "Six individuals fake their deaths to take down criminals.", "Intense"),
+            Movie("The Gray Man", "Action", "Spy", 6.5, 2022, 129, "A CIA operative uncovers agency secrets while being hunted.", "Intense"),
+            Movie("Red Notice", "Action", "Comedy", 6.4, 2021, 118, "An Interpol agent hunts an art thief.", "Light"),
+            // Drama
+            Movie("Marriage Story", "Drama", "Romance", 7.9, 2019, 137, "A director and his wife go through a divorce.", "Emotional"),
+            Movie("Roma", "Drama", "Foreign", 7.7, 2018, 135, "Life of a maid in 1970s Mexico City.", "Emotional"),
+            Movie("The Two Popes", "Drama", "Biography", 7.6, 2019, 125, "Pope Benedict and Pope Francis find common ground.", "Thought-provoking"),
+            Movie("Squid Game", "Drama", "Thriller", 8.0, 2021, 60, "Players compete in deadly survival games.", "Intense"),
+            // Comedy
+            Movie("Murder Mystery", "Comedy", "Mystery", 6.0, 2019, 97, "A couple gets framed for murder while on vacation.", "Light"),
+            Movie("Eurovision Song Contest", "Comedy", "Musical", 6.5, 2020, 123, "Two singers chase their pop star dreams.", "Light"),
+            Movie("Dolemite Is My Name", "Comedy", "Biography", 7.2, 2019, 118, "The story of comedy legend Rudy Ray Moore.", "Emotional"),
+            Movie("The Ridiculous 6", "Comedy", "Western", 4.8, 2015, 119, "Six half-brothers go on a wild western journey.", "Light"),
+            // Sci-Fi
+            Movie("Stranger Things", "Sci-Fi", "Horror", 8.7, 2016, 51, "A boy disappears, uncovering supernatural mysteries.", "Intense"),
+            Movie("Black Mirror: Bandersnatch", "Sci-Fi", "Psychological", 7.1, 2018, 90, "A programmer questions reality while making a game.", "Thought-provoking"),
+            Movie("The Midnight Sky", "Sci-Fi", "Drama", 5.7, 2020, 118, "A scientist tries to warn astronauts after a catastrophe.", "Thought-provoking"),
+            Movie("Dark", "Sci-Fi", "Mystery", 8.7, 2017, 60, "A German town uncovers supernatural secrets.", "Thought-provoking"),
+            // Horror
+            Movie("Bird Box", "Horror", "Post-Apocalyptic", 6.6, 2018, 124, "A mother and children struggle against unseen dangers.", "Intense"),
+            Movie("His House", "Horror", "Supernatural", 6.5, 2020, 93, "A refugee couple faces evil forces in their new home.", "Emotional"),
+            Movie("Fear Street Part One: 1994", "Horror", "Slasher", 6.2, 2021, 107, "Teens face an ancient evil haunting their town.", "Intense"),
+            // Documentary
+            Movie("My Octopus Teacher", "Documentary", "Nature", 8.1, 2020, 85, "A filmmaker bonds with an octopus in South Africa.", "Emotional"),
+            Movie("The Social Dilemma", "Documentary", "Tech", 7.6, 2020, 94, "Examines the dangers of social media.", "Thought-provoking"),
+            Movie("Fyre Festival", "Documentary", "Crime", 7.2, 2019, 97, "Behind the scenes of the failed Fyre festival.", "Thought-provoking")
+        };
+    }
 
 int getValidInput(int min, int max) {
     int choice;
